@@ -1,0 +1,8 @@
+{
+  "name": "João Dono - Lawyer & Strategic Advisor",
+  "description": "Institutional website for João Dono, providing strategic legal and advisory services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,72 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useLanguage } from '../composables/useLanguage'
+
+const { currentLang } = useLanguage()
+
+const content = {
+  PT: {
+    insights: {
+      title: "Insights",
+      subtitle: "Archive of Thought",
+      intro: "Reflexões sobre decisão, governação, liderança e mercados lusófonos africanos. Esta secção publica artigos e perspectivas de João Dono.",
+      topicsTitle: "Temas prioritários:",
+      topics: [
+        "O custo invisível das decisões mal estruturadas",
+        "O que separa juristas que criam valor dos que apenas protegem",
+        "Governação em grupos familiares africanos",
+        "Arbitragem como ferramenta de gestão",
+        "Accountability em mercados emergentes"
+      ],
+      cta: "Ver Arquivo"
+    }
+  },
+  EN: {
+    insights: {
+      title: "Insights",
+      subtitle: "Archive of Thought",
+      intro: "Reflections on decision-making, governance, leadership and Lusophone African markets. This section publishes articles and perspectives by João Dono.",
+      topicsTitle: "Priority themes:",
+      topics: [
+        "The invisible cost of poorly structured decisions",
+        "What separates value-creating lawyers from those who merely protect",
+        "Governance in African family business groups",
+        "Arbitration as a management tool",
+        "Accountability in emerging markets"
+      ],
+      cta: "View Archive"
+    }
+  }
+}
+
+const t = computed(() => content[currentLang.value])
+</script>
+
+<template>
+  <div class="pt-20">
+    <section class="py-24 px-6 lg:px-24 bg-white">
+      <div class="max-w-4xl mx-auto">
+        <span class="text-accent text-sm font-bold tracking-widest uppercase mb-4 block">{{ t.insights.subtitle }}</span>
+        <h1 class="text-4xl lg:text-7xl font-serif mb-12">{{ t.insights.title }}</h1>
+        
+        <p class="text-2xl text-primary/80 mb-12 leading-relaxed">
+          {{ t.insights.intro }}
+        </p>
+
+        <div class="bg-cream p-12 border border-primary/5 mb-16">
+          <h2 class="text-xs font-bold tracking-widest uppercase text-accent mb-8">{{ t.insights.topicsTitle }}</h2>
+          <ul class="space-y-6">
+            <li v-for="topic in t.insights.topics" :key="topic" class="flex items-center gap-6 group cursor-pointer">
+              <div class="w-2 h-2 bg-accent opacity-30 group-hover:opacity-100 transition-opacity"></div>
+              <span class="text-xl font-serif group-hover:text-accent transition-colors">{{ topic }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="text-center">
+          <button class="text-sm font-bold tracking-widest uppercase border-accent border-b-2 pb-1">{{ t.insights.cta }}</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
