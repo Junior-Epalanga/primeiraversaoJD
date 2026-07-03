@@ -111,7 +111,7 @@ const links = computed(() => navLinks[currentLang.value])
           © 2026 João Dono — Lawyer | Arbitrator | Strategic Advisor. {{ currentLang === 'PT' ? 'Todos os direitos reservados.' : 'All rights reserved.' }}
         </div>
         <div class="flex gap-6 text-xs font-bold">
-           <a href="#" class="hover:text-accent">LinkedIn</a>
+           <a href="https://www.linkedin.com/in/jssdono/" target="_blank" rel="noopener noreferrer" class="hover:text-accent">LinkedIn</a>
            <router-link to="/insights" class="hover:text-accent">Insights</router-link>
         </div>
       </div>

@@ -73,7 +73,7 @@ const t = computed(() => content[currentLang.value])
               </div>
               <div>
                 <p class="text-xs font-bold uppercase opacity-40 mb-2">Phone</p>
-                <p class="text-2xl font-serif">+244 924 859 455</p>
+                <p class="text-2xl font-serif"> </p>
               </div>
             </div>
             <div class="flex items-center gap-8">

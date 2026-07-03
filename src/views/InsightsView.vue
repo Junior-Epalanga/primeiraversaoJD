@@ -12,11 +12,13 @@ const content = {
       intro: "Reflexões sobre decisão, governação, liderança e mercados lusófonos africanos. Esta secção publica artigos e perspectivas de João Dono.",
       topicsTitle: "Temas prioritários:",
       topics: [
-        "O custo invisível das decisões mal estruturadas",
-        "O que separa juristas que criam valor dos que apenas protegem",
-        "Governação em grupos familiares africanos",
-        "Arbitragem como ferramenta de gestão",
-        "Accountability em mercados emergentes"
+        "A nova arquitetura na decisão empresarial",
+        "Mercado financeiro angolano: Da poupança tradicional à cultura de investimento",
+        "Entre o controlo e a decisão…",
+        "Da renda à riqueza: O que separa os países que crescem dos que prosperam",
+        "Do Conselho de Administração ao Campo: Como decisões estratégicas impactam a economia real",
+        "Introdução ao Direito Angolano",
+        "Teoria Geral do Direito Civil"
       ],
       cta: "Ver Arquivo"
     }
@@ -28,11 +30,13 @@ const content = {
       intro: "Reflections on decision-making, governance, leadership and Lusophone African markets. This section publishes articles and perspectives by João Dono.",
       topicsTitle: "Priority themes:",
       topics: [
-        "The invisible cost of poorly structured decisions",
-        "What separates value-creating lawyers from those who merely protect",
-        "Governance in African family business groups",
-        "Arbitration as a management tool",
-        "Accountability in emerging markets"
+        "The new architecture in business decision-making",
+        "The Angolan financial market: from traditional savings to an investment culture",
+        "Between control and decision…",
+        "From income to wealth: what separates countries that grow from those that prosper",
+        "From the Board of Directors to the field: how strategic decisions impact the real economy",
+        "Introduction to Angolan Law",
+        "General Theory of Civil Law"
       ],
       cta: "View Archive"
     }

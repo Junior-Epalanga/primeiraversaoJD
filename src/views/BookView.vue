@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLanguage } from '../composables/useLanguage'
+import bookCover from '../assets/images/Livro Ecossistema de lideranca.jpg'
 
 const { currentLang } = useLanguage()
 
@@ -33,16 +34,13 @@ const t = computed(() => content[currentLang.value])
     <section class="py-24 lg:py-40 px-6 lg:px-24 bg-primary text-white">
       <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
         <div class="lg:w-1/2">
-          <div class="relative max-w-md mx-auto aspect-[1/1.4] bg-white text-primary flex items-center justify-center p-12 shadow-2xl overflow-hidden">
-             <!-- Book Cover Placeholder -->
-             <div class="absolute inset-0 border-[10px] border-primary/5"></div>
-             <div class="text-center z-10">
-               <span class="text-xs tracking-[.4em] uppercase mb-4 block text-accent font-bold">Ecossistema de</span>
-               <h1 class="text-5xl lg:text-7xl font-serif mb-8 leading-none">Liderança</h1>
-               <div class="h-px bg-accent w-24 mx-auto mb-8"></div>
-               <p class="font-serif italic text-lg opacity-60">João Dono</p>
-             </div>
-             <div class="absolute bottom-12 right-0 left-0 text-[80px] font-serif text-accent/5 pointer-events-none select-none -mb-32">LDR</div>
+          <div class="relative max-w-md mx-auto aspect-[1/1.4] shadow-2xl overflow-hidden">
+            <img
+              :src="bookCover"
+              alt="Ecossistema de Liderança — João Dono"
+              class="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <div class="absolute inset-0 border-[10px] border-white/10 pointer-events-none"></div>
           </div>
         </div>
         <div class="lg:w-1/2">
