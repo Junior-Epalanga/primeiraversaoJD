@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { Mail, Phone, MapPin } from 'lucide-vue-next'
 import { useLanguage } from '../composables/useLanguage'
 
@@ -15,9 +15,19 @@ const content = {
       form: {
         name: "Nome",
         company: "Empresa / Organização",
+        email: "Email",
         subject: "Assunto",
         message: "Mensagem",
-        send: "Enviar"
+        send: "Enviar",
+        sending: "A enviar…",
+        success: "Mensagem enviada. Responderemos em breve.",
+        error: "Não foi possível enviar. Tente novamente ou contacte jd@joaodono.com.",
+        subjects: {
+          advisory: "Advisory",
+          education: "Educação Executiva",
+          book: "Livro",
+          other: "Outro"
+        }
       }
     },
     finalCta: {
@@ -35,8 +45,18 @@ const content = {
         name: "Name",
         company: "Company / Organisation",
         subject: "Subject",
+        email: "Email",
         message: "Message",
-        send: "Send"
+        send: "Send",
+        sending: "Sending…",
+        success: "Message sent. We will respond shortly.",
+        error: "Could not send. Please try again or email jd@joaodono.com.",
+        subjects: {
+          advisory: "Advisory",
+          education: "Executive Education",
+          book: "Book",
+          other: "Other"
+        }
       }
     },
     finalCta: {
@@ -47,6 +67,54 @@ const content = {
 }
 
 const t = computed(() => content[currentLang.value])
+
+const subjectOptions = computed(() => {
+  const s = t.value.contact.form.subjects
+  return [
+    { value: s.advisory, label: s.advisory },
+    { value: s.education, label: s.education },
+    { value: s.book, label: s.book },
+    { value: s.other, label: s.other },
+  ]
+})
+
+const form = reactive({
+  name: '',
+  email: '',
+  company: '',
+  subject: '',
+  message: '',
+})
+
+const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
+
+async function submitContact() {
+  if (status.value === 'sending') return
+
+  status.value = 'sending'
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...form,
+        subject: form.subject || subjectOptions.value[0]?.value,
+        lang: currentLang.value,
+      }),
+    })
+
+    if (!res.ok) throw new Error('request_failed')
+
+    status.value = 'success'
+    form.name = ''
+    form.email = ''
+    form.company = ''
+    form.subject = ''
+    form.message = ''
+  } catch {
+    status.value = 'error'
+  }
+}
 </script>
 
 <template>
@@ -92,22 +160,34 @@ const t = computed(() => content[currentLang.value])
 
         <!-- Contact Form -->
         <div class="lg:w-1/2 bg-white p-8 lg:p-16 shadow-2xl border border-primary/5">
-          <form @submit.prevent class="space-y-8">
+          <form @submit.prevent="submitContact" class="space-y-8">
             <div>
               <label class="text-xs font-bold uppercase tracking-widest opacity-50 block mb-3">{{ t.contact.form.name }}</label>
-              <input type="text" class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors" />
+              <input type="text"
+               v-model="form.name"
+               class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors" />
             </div>
             <div>
               <label class="text-xs font-bold uppercase tracking-widest opacity-50 block mb-3">{{ t.contact.form.company }}</label>
-              <input type="text" class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors" />
+              <input type="text"
+               v-model="form.company"
+               class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors" />
+            </div>
+            <div>
+              <label class="text-xs font-bold uppercase tracking-widest opacity-50 block mb-3">{{ t.contact.form.email }}</label>
+              <input type="email"
+               v-model="form.email"
+               class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors" />
             </div>
             <div>
               <label class="text-xs font-bold uppercase tracking-widest opacity-50 block mb-3">{{ t.contact.form.subject }}</label>
-              <select class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors appearance-none">
-                <option>Advisory</option>
-                <option>Educação Executiva</option>
-                <option>Livro</option>
-                <option>Outro</option>
+              <select
+               v-model="form.subject"
+               class="w-full bg-cream border-b border-primary/20 p-5 focus:outline-none focus:border-accent transition-colors appearance-none">
+               <option value="" disabled>{{ t.contact.form.subject }}</option>
+                <option v-for="opt in subjectOptions" :key="opt.value" :value="opt.value">
+                  {{ opt.label }}
+                </option>
               </select>
             </div>
             <div>
