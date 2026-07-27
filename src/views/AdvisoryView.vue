@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { ChevronRight, Compass, Shield, Handshake, ShieldAlert, Users } from 'lucide-vue-next'
 import { useLanguage } from '../composables/useLanguage'
+import advisoryImage from '../assets/images/image-advisory.jpg'
 
 const { currentLang } = useLanguage()
 
@@ -127,7 +128,7 @@ const t = computed(() => content[currentLang.value])
 
     <!-- Visual element with placeholder -->
     <section class="h-[60vh] relative overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover mix-blend-luminosity brightness-50" />
+      <img :src="advisoryImage" alt="Strategic Advisory" class="w-full h-full object-cover object-[center_60%] mix-blend-luminosity brightness-50" />
       <div class="absolute inset-0 bg-primary/20"></div>
       <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
         <h2 class="text-white text-3xl lg:text-5xl font-serif italic max-w-3xl leading-tight">

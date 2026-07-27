@@ -14,17 +14,17 @@ const content = {
         {
           title: "O Jurista Empresarial Moderno",
           target: "Juristas internos que querem evoluir de função técnica para parceiro estratégico do negócio.",
-          price: "USD 4.000+"
+          price: ""
         },
         {
           title: "Direito Empresarial para Gestores",
           target: "Gestores que tomam decisões com implicações jurídicas e precisam de clareza e segurança.",
-          price: "USD 4.000+"
+          price: ""
         },
         {
           title: "Contratos, Risco & Negociação",
           target: "Equipas que lidam com fornecedores, contratos e decisões comerciais.",
-          price: "USD 4.000+"
+          price: ""
         }
       ],
       additional: "Temas Adicionais: Liderança & Performance, Governação & Accountability, Decisão sob Pressão, Risco Jurídico para Executivos."

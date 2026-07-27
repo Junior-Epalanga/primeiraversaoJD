@@ -68,9 +68,8 @@ const t = computed(() => content[currentLang.value])
           </p>
         </div>
         <div class="lg:w-1/2">
-           <div class="aspect-[4/5] bg-primary relative overflow-hidden group">
-             <img :src="aboutImage" alt="João Dono" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity" />
-             <div class="absolute inset-0 bg-accent/10"></div>
+           <div class="aspect-[4/5] relative overflow-hidden group">
+             <img :src="aboutImage" alt="João Dono" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
            </div>
         </div>
       </div>
